@@ -13,8 +13,17 @@ food <- read_csv("C:/Data/fastfood.csv")
 
 write.csv(food,"fastfood.csv",row.names=FALSE)
 
-plot(food, col = c(1,2,3,4), main = "Matrix plot of data points")
+ggpairs(food[,c(1,4,5,6)],
+        
+        mapping = ggplot2::aes(color = restaurant),
+        
+        upper = list(continuous = wrap("density", alpha = 0.5), combo = "box_no_facet"))+ggplot2::labs(title = "Fastfood")  + 
+  
+  theme(axis.text.x = element_text(color="steelblue", 
+                                   
+                                   size=12, angle=90),
+        
+        axis.text.y = element_text( color="steelblue", size=12))
 
 ggsave("plot.png", width = 10, height = 7)
 
-jpeg("rplot.jpg", width = 350, height = "350")
